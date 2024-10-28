@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Counter.Views.CounterPage"
+             Title="Counter">
+    <HorizontalStackLayout
+        Spacing="10" 
+        Margin="5"
+        HeightRequest="100">
+        <Label
+            Text="{Binding Name}"
+            VerticalOptions="Center"
+            HorizontalOptions="Start"/>
+        <Label 
+            x:Name="StartingValDisplay"
+            Text="{Binding StartingValue}"
+            VerticalOptions="Center"/>
+        <Button 
+            Text="-1"
+            Clicked="RemoveOne_Clicked"/>            
+        <Label 
+            x:Name="CurrentValDisplay"
+            Text="{Binding CurrentValue}"
+            VerticalOptions="Center"/>
+        <Button
+            Text="+1"
+            Clicked="AddOne_Clicked"/>
+    </HorizontalStackLayout>
+</ContentPage>

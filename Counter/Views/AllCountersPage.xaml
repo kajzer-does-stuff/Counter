@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Counter.Views.AllCountersPage"
+             Title="Your Counters">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add counter" Clicked="AddNewCounter_Clicked" IconImageSource="{FontImage Glyph='+', Color=Black, Size=22}" />
+    </ContentPage.ToolbarItems>
+
+    <VerticalStackLayout>
+        <CollectionView 
+            x:Name="countersCollection"
+            ItemsSource="{Binding CounterCollection}"
+            WidthRequest="800"
+            Margin="20">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid
+                        ColumnDefinitions="*,*">
+                        <Label
+                            Text="{Binding Name}"
+                            HorizontalOptions="Start"
+                            VerticalTextAlignment="Center"
+                            FontSize="Medium"                            
+                            HeightRequest="100"
+                            Grid.Column="0"/>
+                        
+                        <HorizontalStackLayout
+                            Spacing="10"
+                            HeightRequest="100"
+                            Grid.Column="1"
+                            VerticalOptions="Center"
+                            HorizontalOptions="End">
+                            
+                            <Label 
+                                x:Name="StartingValDisplay"
+                                Text="{Binding StartingValue}"
+                                VerticalOptions="Center"
+                                FontSize="Medium"
+                                TextColor="DarkGray"/>
+                            
+                            <Label 
+                                x:Name="CurrentValDisplay"
+                                Text="{Binding CurrentValue}"
+                                VerticalOptions="Center"
+                                FontSize="Large"/>
+                            
+                            <VerticalStackLayout
+                                HeightRequest="100"
+                                WidthRequest="100"
+                                Spacing="10">
+                                    <Button 
+                                        Text="+1"
+                                        BindingContext="{Binding}"
+                                        Clicked="AddOne_Clicked"/>
+                                    <Button
+                                        Text="-1"
+                                        BindingContext="{Binding}"
+                                        Clicked="RemoveOne_Clicked"/>      
+                            </VerticalStackLayout>
+                         
+                            <Button
+                                Text="Reset"
+                                WidthRequest="100"
+                                Clicked="Reset_Clicked"/>     
+                        </HorizontalStackLayout>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button
+            HeightRequest="80"
+            WidthRequest="130"
+            Text="Add counter"
+            ImageSource="{FontImage Glyph='+', Color=White, Size=22}"
+            Clicked="AddNewCounter_Clicked"/>
+    </VerticalStackLayout>
+</ContentPage>

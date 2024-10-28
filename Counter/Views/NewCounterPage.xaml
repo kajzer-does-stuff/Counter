@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Counter.Views.NewCounterPage"
+             Title="New Counter">
+    <Grid 
+        ColumnDefinitions="*,*,*" RowDefinitions="*"
+        WidthRequest="800"
+        HeightRequest="70"
+        VerticalOptions="Center">
+
+        <Editor x:Name="CounterName_Input"                    
+            Placeholder="Name"
+            WidthRequest="250"
+            Grid.Column="0"
+            FontSize="Medium"
+            VerticalTextAlignment="Center"
+            HorizontalTextAlignment="Center"/>
+
+        <Editor x:Name="CounterStartingValue_Input"
+            Placeholder="Starting Value"
+            WidthRequest="250"
+            Grid.Column="1"
+            FontSize="Medium"
+            VerticalTextAlignment="Center"
+            HorizontalTextAlignment="Center"/>
+
+        <HorizontalStackLayout
+            Spacing="10"
+            HeightRequest="70"
+            WidthRequest="300"
+            Grid.Column="2"
+            VerticalOptions="Center"
+            HorizontalOptions="End">
+
+            <Button
+                Text="Add counter"
+                WidthRequest="120"
+                Clicked="AddCounter_Clicked"/>
+
+            <Button
+                Text="Cancel"
+                WidthRequest="120"
+                Clicked="Cancel_Clicked"/>
+        </HorizontalStackLayout>
+    </Grid>
+
+</ContentPage>
