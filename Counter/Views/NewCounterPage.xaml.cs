@@ -11,32 +11,28 @@ public partial class NewCounterPage : ContentPage
 	}
 	private async void AddCounter_Clicked(object sender, EventArgs e)
 	{
-        //utworzenie nowego countera
-
-        //nazwa i poczπtkowa wartoúc
-        string counterName = "Counter";
-        int counterStartingValue = 0;
-
-        //walidacja
-        //dzia≥a w teorii
-        //w praktyce - ???
-        if(Regex.IsMatch(CounterStartingValue_Input.Text.ToString(), @"\d+"))
-        {
-            counterStartingValue = int.Parse(CounterStartingValue_Input.Text);
-        }              
-        if(Regex.IsMatch(CounterName_Input.Text.ToString(), @".+"))
-        {
-            counterName = CounterName_Input.Text.ToString();
-        }
-
-        //úcieøka do zapisu
-        string savePath = $"{FileSystem.AppDataDirectory}/{counterName}_{Path.GetRandomFileName()}.counter.txt";
-
         //nowa instancja countera
         Models.Counter newCounter = new Models.Counter();
+
+        //walidacja
+        //dzia≈Ça w teorii
+        //w praktyce - ???
+        string nameInput = CounterName_Input.Text.ToString();
+        string numberInput = CounterStartingValue_Input.Text.ToString();
+
+        if (Regex.IsMatch(nameInput, @".+"))
+        {
+            newCounter.Name = nameInput;
+        }
+        if (Regex.IsMatch(numberInput, @"\d+"))
+        {
+            newCounter.StartingValue = int.Parse(numberInput);
+        }
+
+        //≈õcie≈ºka do zapisu
+        string savePath = $"{FileSystem.AppDataDirectory}/{newCounter.Name}_{Path.GetRandomFileName()}.counter.txt";
+
         newCounter.FileName = savePath;
-        newCounter.Name = counterName;
-        newCounter.StartingValue = counterStartingValue;
         newCounter.CurrentValue = newCounter.StartingValue;
         newCounter.CounterID = CounterOperations.nextCounterID;
 
@@ -47,7 +43,6 @@ public partial class NewCounterPage : ContentPage
 
         await Shell.Current.GoToAsync("..");
     }
-
     private async void Cancel_Clicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("..");
